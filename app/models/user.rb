@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates_uniqueness_of :email, case_sensitive: true
 
+  has_many :products
+
 end
