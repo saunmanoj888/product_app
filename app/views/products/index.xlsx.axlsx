@@ -16,6 +16,7 @@ wb.styles do |style|
     # Create entries for each product
     @products.each do |product|
       sheet.add_row [product.id, product.name, product.model, product.brand, product.released_date, product.ram, product.external_storage]
+      sheet.add_hyperlink location: url_for(action: "show", id: product.id, only_path: false), ref: sheet.rows.last.cells.first
     end
   end
 end
