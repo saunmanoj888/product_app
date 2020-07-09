@@ -1,32 +1,53 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
   <h3 class="mt-4 font-weight-normal text-center">Products</h1>
   <div class="row">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Product ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Model</th>
-          <th scope="col">Brand</th>
-          <th scope="col">Released Date</th>
-          <th scope="col">RAM</th>
-          <th scope="col">External Storage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @products.each do |product| %>
+    <div class="col-3">
+      <h4 class="mt-4 font-weight-normal text-center">Filters</h1>
+      <%= search_form_for @search, url: search_products_path, method: :post do |f| %>
+        <div>
+          <%= f.condition_fields do |c| %>
+            <div class=" mb-3">
+              <%= c.attribute_fields do |a| %>
+                <%= a.attribute_select %>
+              <% end %>
+              <%= c.predicate_select %>
+              <%= c.value_fields do |v| %>
+                <%= v.text_field :value %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <%= f.submit "Filter", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="col-9 shadow-lg">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <th scope="row"><%= product.id %></th>
-            <td><%= link_to product.name, product_path(product) %></td>
-            <td><%= product.model %></td>
-            <td><%= product.brand %></td>
-            <td><%= product.released_date %></td>
-            <td><%= product.ram %></td>
-            <td><%= product.external_storage %></td>
+            <th scope="col">Product ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Model</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Released Date</th>
+            <th scope="col">RAM</th>
+            <th scope="col">External Storage</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <th scope="row"><%= product.id %></th>
+              <td><%= link_to product.name, product_path(product) %></td>
+              <td><%= product.model %></td>
+              <td><%= product.brand %></td>
+              <td><%= product.released_date %></td>
+              <td><%= product.ram %></td>
+              <td><%= product.external_storage %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </div>

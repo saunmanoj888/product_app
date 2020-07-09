@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = current_user.products.order(created_at: :desc).limit(25)
+    @search = current_user.products.search(params[:q])
+    @products = params[:q].present? ? @search.result : @search.result.limit(10)
+    @search.build_condition
   end
 
   def show
