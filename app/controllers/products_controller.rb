@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
   def index
     @search = current_user.products.ransack(params[:q])
     @products = params[:q].present? ? @search.result : @search.result.limit(25)
-    @search.build_condition
 
     respond_to do |format|
       format.xlsx {
