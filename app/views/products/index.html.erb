@@ -21,6 +21,9 @@
       <% end %>
     </div>
     <div class="col-9 shadow-lg">
+      <div class="d-flex justify-content-end">
+        <%= link_to 'Download as Excel', products_path(format: :xlsx, q: @filter_query) %>
+      </div>
       <table class="table table-striped">
         <thead>
           <tr>
