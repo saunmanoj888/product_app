@@ -2,9 +2,15 @@
 <%= search_form_for @search, url: search_products_path, method: :post do |f| %>
   <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">Name</h5>
+      <h5 class="card-title">Search by</h5>
       <p class="card-text">
         <%= f.text_field :name_cont, placeholder: 'Enter a product name' %>
+      </p>
+      <p class="card-text">
+        <%= f.text_field :model_cont, placeholder: 'Enter a product model' %>
+      </p>
+      <p class="card-text">
+        <%= f.text_field :brand_cont, placeholder: 'Enter a product brand' %>
       </p>
     </div>
   </div>
